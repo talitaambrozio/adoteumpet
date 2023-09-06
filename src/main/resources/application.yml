@@ -9,5 +9,5 @@ spring:
     show-sql: true
     
 flyway:
-	locations:
-		classpath: db/migration
+  locations:
+    classpath: db/migration

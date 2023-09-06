@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AdoteumpetApplication {
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(AdoteumpetApplication.class, args);
-	}
+	public static void main(String[] args) {SpringApplication.run(AdoteumpetApplication.class, args);}
 
 }
