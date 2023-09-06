@@ -5,8 +5,8 @@ import java.time.LocalDate;
 
 public record RegistroUsuarioDto(
 
-        @NotNull
-        String nome,
-        String sobrenome,
-        LocalDate dataNascimento,
+        String name,
+        String lastname,
+        String email,
+        String cellPhoneNumber,
         String cpf){}
