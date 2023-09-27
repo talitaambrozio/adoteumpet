@@ -7,30 +7,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.adoteumpet.dto.User.UserInput;
-import com.br.adoteumpet.dto.mapper.UserIO;
+import com.br.adoteumpet.dto.User.UserInputDto;
 import com.br.adoteumpet.model.User;
 import com.br.adoteumpet.service.UserService;
+import com.br.adoteumpet.dto.User.UserOutputDto;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
 
     private final UserService userService;
-    private final UserIO userIO;
     
  
-    public UserController(UserService userService, UserIO userIO) {
+    public UserController(UserService userService) {
 		super();
 		this.userService = userService;
-        this.userIO = userIO;
+
 	}
 
 
 	@PostMapping
-    public ResponseEntity<String> save(@RequestBody UserInput dto){
-        User newUser = userIO.mapTo(dto);
-        userService.salvar(newUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully.");
+    public ResponseEntity<UserOutputDto> save(@RequestBody UserInputDto dto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(dto));
     }
 }
