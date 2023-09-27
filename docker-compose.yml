@@ -22,10 +22,10 @@ services:
       interval: 10s
       retries: 10
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=h5UzM2kEnp8Q42
-      - APP_DB_USER=root
-      - APP_DB_PASS=123
+#      - POSTGRES_USER=root
+#      - POSTGRES_PASSWORD=h5UzM2kEnp8Q42
+      - APP_DB_USER=postgres
+      - APP_DB_PASS=root
       - APP_DB_NAME=adoteumpet
     ports:
       - '5433:5432'

@@ -2,7 +2,8 @@ package com.br.adoteumpet.model;
 
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +18,8 @@ public class User {
     private String email;
     private String cellPhoneNumber;
     private String cpf;
+    @OneToMany
+    private Set<Pet> pet;
 
 
     public void setUserId(UUID userId) {
@@ -59,6 +62,9 @@ public class User {
         return cpf;
     }
 
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
 
     public User(){
 
@@ -72,5 +78,32 @@ public class User {
         this.cellPhoneNumber = cellPhoneNumber;
         this.cpf = cpf;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (cpf == null) {
+            if (other.cpf != null)
+                return false;
+        } else if (!cpf.equals(other.cpf))
+            return false;
+        return true;
+    }
+
+    
 
 }
