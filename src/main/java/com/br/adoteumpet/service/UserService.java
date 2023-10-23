@@ -3,8 +3,6 @@ package com.br.adoteumpet.service;
 import com.br.adoteumpet.AdoteumpetApplication;
 import com.br.adoteumpet.dto.User.UserInputDto;
 import com.br.adoteumpet.dto.User.UserOutputDto;
-import com.br.adoteumpet.dto.mapper.UserOutputMapper;
-import com.br.adoteumpet.dto.mapper.UserIOMapper;
 import com.br.adoteumpet.exceptions.ConflictException;
 import com.br.adoteumpet.exceptions.InvalidRequestException;
 import com.br.adoteumpet.model.User;
@@ -18,29 +16,22 @@ public class UserService {
 
     private final UserRepository usuarioRepository;
     private static Logger logger = LoggerFactory.getLogger(AdoteumpetApplication.class);
-    private final UserOutputMapper userOutput;
-    private final UserIOMapper userIO;
+
     
-    public UserService(UserRepository usuarioRepository, UserOutputMapper userOutput, UserIOMapper userIO) {
+    public UserService(UserRepository usuarioRepository) {
 		super();
 		this.usuarioRepository = usuarioRepository;
-        this.userOutput = userOutput;
-        this.userIO = userIO;
 	}
 
 
-
-	public UserOutputDto create(UserInputDto userInput){
-        User newUser = userIO.mapToEntity(userInput);
+	public UserOutputDto create(UserInputDto user){
+        User newUser = UserInputDto.toEntity(user);
         validateUserInformation(newUser);
         usuarioRepository.save(newUser);
         logger.info("Salvando usuário no banco de dados.");
         logger.info("Usuário salvo com sucesso!");
-        return userOutput.mapToDto(newUser); 
+        return new UserOutputDto(newUser);
     }
-
-
-    
 
     private void validateUserInformation(User user){
                 Boolean userAlreadyRegistered = usuarioRepository.existsByCpf(user.getCpf());

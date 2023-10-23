@@ -1,9 +1,8 @@
-
-create table tb_users(
-    user_id BINARY(36) primary key,
-    name varchar(100) not null,
-    lastname varchar(100) not null,
-    email varchar(120) not null,
-    cell_phone_number varchar(13) not null,
-    cpf varchar(11) not null unique
+CREATE TABLE tb_users (
+    user_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100) NOT NULL,
+    email VARCHAR(120) NOT NULL,
+    cell_phone_number VARCHAR(13) NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE
 );

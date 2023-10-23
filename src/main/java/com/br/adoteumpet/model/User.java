@@ -1,12 +1,19 @@
 package com.br.adoteumpet.model;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Data
 @Table(name = "tb_users")
 public class User {
 
@@ -16,94 +23,20 @@ public class User {
     private String name;
     private String lastname;
     private String email;
+    @Column(name = "cell_phone_number")
     private String cellPhoneNumber;
     private String cpf;
     @OneToMany
     private Set<Pet> pet;
 
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public User() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCellPhoneNumber() {
-        return cellPhoneNumber;
-    }
-
-    public void setCellPhoneNumber(String cellPhoneNumber) {
-        this.cellPhoneNumber = cellPhoneNumber;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf){
-        this.cpf = cpf;
-    }
-
-    public User(){
-
-    }
-
-    public User(UUID userId, String name, String lastname, String email, String cellPhoneNumber, String cpf){
-        this.userId = userId;
+    public User(String name,String lastname,String email,String cellPhoneNumber,String cpf) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.cellPhoneNumber = cellPhoneNumber;
         this.cpf = cpf;
     }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        if (cpf == null) {
-            if (other.cpf != null)
-                return false;
-        } else if (!cpf.equals(other.cpf))
-            return false;
-        return true;
-    }
-
-    
-
 }

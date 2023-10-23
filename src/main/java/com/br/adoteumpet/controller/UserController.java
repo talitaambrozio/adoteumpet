@@ -17,14 +17,11 @@ import com.br.adoteumpet.dto.User.UserOutputDto;
 public class UserController {
 
     private final UserService userService;
-    
- 
+
     public UserController(UserService userService) {
 		super();
 		this.userService = userService;
-
 	}
-
 
 	@PostMapping
     public ResponseEntity<UserOutputDto> save(@RequestBody UserInputDto dto){

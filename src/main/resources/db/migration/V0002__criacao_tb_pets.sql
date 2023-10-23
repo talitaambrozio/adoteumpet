@@ -1,11 +1,9 @@
-CREATE TABLE tb_pets(
-    pet_id BINARY(36) primary key,
-    name varchar(100) not null,
-    race varchar(100) not null,
-    color varchar(120) not null,
-    age int(2) not null,
-    user_id BINARY(36) not null,
-
-
+CREATE TABLE tb_pets (
+    pet_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(100) NOT NULL,
+    race VARCHAR(100) NOT NULL,
+    color VARCHAR(120) NOT NULL,
+    age INT NOT NULL,
+    user_id UUID NOT NULL,
     FOREIGN KEY (user_id) REFERENCES tb_users (user_id)
 );
