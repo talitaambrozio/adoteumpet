@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.adoteumpet.dto.User.UserInputDto;
-import com.br.adoteumpet.model.User;
 import com.br.adoteumpet.service.UserService;
 import com.br.adoteumpet.dto.User.UserOutputDto;
 

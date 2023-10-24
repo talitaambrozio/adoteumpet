@@ -39,4 +39,12 @@ public class User {
         this.cellPhoneNumber = cellPhoneNumber;
         this.cpf = cpf;
     }
+    public User(UUID userId, String name,String lastname,String email,String cellPhoneNumber,String cpf) {
+        this.userId = userId;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.cellPhoneNumber = cellPhoneNumber;
+        this.cpf = cpf;
+    }
 }

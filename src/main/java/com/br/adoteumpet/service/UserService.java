@@ -5,36 +5,48 @@ import com.br.adoteumpet.dto.User.UserInputDto;
 import com.br.adoteumpet.dto.User.UserOutputDto;
 import com.br.adoteumpet.exceptions.ConflictException;
 import com.br.adoteumpet.exceptions.InvalidRequestException;
+import com.br.adoteumpet.exceptions.NotFoundException;
 import com.br.adoteumpet.model.User;
 import com.br.adoteumpet.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class UserService {
 
-    private final UserRepository usuarioRepository;
+    private final UserRepository userRepository;
     private static Logger logger = LoggerFactory.getLogger(AdoteumpetApplication.class);
 
     
-    public UserService(UserRepository usuarioRepository) {
+    public UserService(UserRepository userRepository) {
 		super();
-		this.usuarioRepository = usuarioRepository;
+		this.userRepository = userRepository;
 	}
 
 
 	public UserOutputDto create(UserInputDto user){
         User newUser = UserInputDto.toEntity(user);
         validateUserInformation(newUser);
-        usuarioRepository.save(newUser);
+        userRepository.save(newUser);
         logger.info("Salvando usuário no banco de dados.");
         logger.info("Usuário salvo com sucesso!");
         return new UserOutputDto(newUser);
     }
 
+    public UserOutputDto findUserById(UUID userId){
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            return new UserOutputDto(user.get());
+        }
+        throw new NotFoundException("Resource not found.");
+    }
+
     private void validateUserInformation(User user){
-                Boolean userAlreadyRegistered = usuarioRepository.existsByCpf(user.getCpf());
+                Boolean userAlreadyRegistered = userRepository.existsByCpf(user.getCpf());
         if(userAlreadyRegistered){
             logger.info("Erro ao salvar usuário, já existe um usuário cadastrado com o cpf informado.");
             throw new ConflictException("There is already a registered user with this cpf.");
