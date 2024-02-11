@@ -12,6 +12,7 @@ services:
       - DATABASE_URL=jdbc:postgresql://database:5432/adoteumpet
     depends_on:
       - database
+
   database:
     image: postgres:12-alpine
     container_name: database-adoteumpet
@@ -22,13 +23,15 @@ services:
       interval: 10s
       retries: 10
     environment:
-#      - POSTGRES_USER=root
-#      - POSTGRES_PASSWORD=h5UzM2kEnp8Q42
-      - APP_DB_USER=postgres
-      - APP_DB_PASS=root
-      - APP_DB_NAME=adoteumpet
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=adoteumpet
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
     ports:
       - '5433:5432'
     volumes:
       - ./postgres/db:/docker-entrypoint-initdb.d/
       - ./postgres/data:/var/lib/postgresql/data
+    command: ["postgres", "-c", "shared_preload_libraries='pg_stat_statements'"]
+    user: "postgres:postgres"

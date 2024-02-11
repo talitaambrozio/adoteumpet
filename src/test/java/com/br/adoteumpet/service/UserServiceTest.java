@@ -1,8 +1,9 @@
 package com.br.adoteumpet.service;
 
-import com.br.adoteumpet.dto.User.UserOutputDto;
+import com.br.adoteumpet.dto.user.UserOutputDto;
 import com.br.adoteumpet.exceptions.NotFoundException;
 import com.br.adoteumpet.model.User;
+import com.br.adoteumpet.repository.UserPetRepository;
 import com.br.adoteumpet.repository.UserRepository;
 import com.br.adoteumpet.templates.UserTemplate;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +14,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -26,12 +25,16 @@ public class UserServiceTest {
     private UserService userService;
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private UserPetRepository userPetRepository;
+    @Mock
+    private PetService petService;
 
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
         userRepository = mock(UserRepository.class);
-        userService = new UserService(userRepository);
+        userService = new UserService(userRepository, petService, userPetRepository);
     }
 
     @Test

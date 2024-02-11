@@ -1,4 +1,4 @@
-package com.br.adoteumpet.dto.User;
+package com.br.adoteumpet.dto.user;
 
 import com.br.adoteumpet.model.User;
 import jakarta.validation.constraints.NotBlank;
