@@ -2,7 +2,6 @@ package com.br.adoteumpet.controller;
 
 import com.br.adoteumpet.dto.pet.PetInputDto;
 import com.br.adoteumpet.dto.pet.PetOutputDto;
-import com.br.adoteumpet.model.Pet;
 import com.br.adoteumpet.service.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
