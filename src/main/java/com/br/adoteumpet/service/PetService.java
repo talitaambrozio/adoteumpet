@@ -46,4 +46,9 @@ public class PetService {
         return PetOutputDto.listEntityToDto(pets);
     }
 
+    public List<PetOutputDto> findPetsAvailableForAdoption(){
+        List<Pet> pets = petRepository.findByStatusPet(true);
+        return PetOutputDto.listEntityToDto(pets);
+    }
+
 }

@@ -22,6 +22,7 @@ public class Pet {
     private String race;
     private String color;
     private int age;
+    private Boolean statusPet;
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonBackReference

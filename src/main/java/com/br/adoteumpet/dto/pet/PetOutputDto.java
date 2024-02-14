@@ -18,6 +18,7 @@ public class PetOutputDto {
     private String name;
     private String color;
     private int age;
+    private boolean statusPet;
     private UUID userId;
 
 
@@ -27,6 +28,7 @@ public class PetOutputDto {
         this.color = pet.getColor();
         this.age = pet.getAge();
         this.userId = pet.getUser().getUserId();
+        this.statusPet = pet.getStatusPet();
 
     }
 

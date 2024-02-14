@@ -21,4 +21,5 @@ public class PetInputDto {
     @NotBlank
     private int age;
 
+
 }

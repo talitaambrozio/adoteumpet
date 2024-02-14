@@ -25,6 +25,11 @@ public class PetController {
         return ResponseEntity.status(HttpStatus.OK).body(petService.findAll());
     }
 
+    @GetMapping("/petsAvailableForAdoption")
+    public ResponseEntity<List<PetOutputDto>> findPetsAvailableForAdoption(){
+        return ResponseEntity.status(HttpStatus.OK).body(petService.findPetsAvailableForAdoption());
+    }
+
     @PutMapping("{petId}")
     public ResponseEntity<PetOutputDto> update(@PathVariable UUID petId, @RequestBody PetInputDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(petService.update(petId, dto));

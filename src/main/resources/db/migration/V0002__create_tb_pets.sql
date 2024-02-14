@@ -4,6 +4,7 @@ CREATE TABLE tb_pets (
     race VARCHAR(100) NOT NULL,
     color VARCHAR(120) NOT NULL,
     age INT NOT NULL,
+    status_pet BOOLEAN NOT NULL DEFAULT TRUE,
     user_id UUID NOT NULL,
     FOREIGN KEY (user_id) REFERENCES tb_users (user_id) ON DELETE CASCADE
 );

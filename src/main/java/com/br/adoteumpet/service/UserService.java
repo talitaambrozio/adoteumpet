@@ -71,6 +71,7 @@ public class UserService {
         pet.setRace(dto.getRace());
         pet.setColor(dto.getColor());
         pet.setAge(dto.getAge());
+        pet.setStatusPet(true);
         petService.save(pet);
 
         user.getPets().add(pet);
